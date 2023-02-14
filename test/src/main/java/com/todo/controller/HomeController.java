@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.todo.service.TodoService;
-import com.todo.service.TodoServiceImpl;
 
 /**
  * Handles requests for the application home page.
