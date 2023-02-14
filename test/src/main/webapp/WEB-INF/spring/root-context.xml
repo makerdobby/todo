@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- DataSource : 실제 연결될 데이터베이스의 DBCP가 적용된 Connection 정보를 Factory에 적용해줌 -->
+ 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+	    <property name="driverClassName" value="org.mariadb.jdbc.Driver" />
+		<property name="url" value="jdbc:mariadb://test-database.c89dlvbsfnvs.ap-northeast-2.rds.amazonaws.com:3306/test" />
+		<property name="username" value="root" />
+		<property name="password" value="test-database" />
+	</bean>
+		
+	<!-- SQL Session Factory : 데이터 베이스 관리에 대한 전반적인 기능을 가지고 있음 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 쿼리정보 파일 경로 -->
+		<property name="mapperLocations" value="classpath*:mapper/**/*.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+		
+	<!-- SQL Session Template : 세션유지에 대한 정보를 가짐 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+		
+</beans>

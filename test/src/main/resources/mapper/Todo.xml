@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="todomapper">
+
+	<select id="selectList" resultType="com.todo.vo.TodoVo" >
+		/* QID = "todomapper.selectList" */
+		SELECT
+			 ST_ID AS stId
+			,ST_NO AS stNo
+			,ST_NAME AS stName
+			,ST_TITLE AS stTitle
+			,ST_CONT AS stCont
+			,ST_DT AS stDt
+		FROM
+			TODO
+		ORDER BY
+			ST_ID DESC
+	</select>
+
+</mapper>
